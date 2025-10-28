@@ -1,4 +1,4 @@
-import Models.Factura;
+import Models.Usuario;
 import Services.IDAO;
 import Services.ImpIDAO;
 
@@ -12,12 +12,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Factura f= new Factura();
+        Usuario f= new Usuario();
         f.setFechaEmision(LocalDate.now());
         f.setNombreCliente("Juan Perez");
         f.setTotal(1500.75);
         dao.insert(f);
-        List<Factura> lista = dao.getAll("Factura.findAll", Factura.class);
+        List<Usuario> lista = dao.getAll("Factura.findAll", Usuario.class);
         lista.forEach(System.out::println);
     }
 }

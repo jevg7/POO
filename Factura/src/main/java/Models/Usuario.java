@@ -4,18 +4,18 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="factura")
+@Table(name="usuario")
 @NamedQueries({
-        @NamedQuery(name = "Factura.findAll", query = "SELECT f FROM Factura f")
+        @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
 })
-public class Factura {
+public class Usuario {
     @Id
-    @SequenceGenerator (name = "seqFactura", sequenceName = "seq_factura", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqFactura")
+    @SequenceGenerator (name = "seqUsuario", sequenceName = "seq_Usuario", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUsuario")
     private Integer id;
 
-    @Column(name="fecha_emision", nullable = false)
-    private  LocalDate fechaEmision;
+    @Column(name="nombre", nullable = false)
+    private  String nombre;
 
     @Column(name="nombre_cliente", nullable = false, length=100)
     private String nombreCliente;
