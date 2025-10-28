@@ -2,6 +2,9 @@ package model;
 
 import jakarta.persistence.*;
 
+import javax.management.relation.Role;
+import java.util.Set;
+
 @Entity
 @Table(name = "usuario_administrativo")
 @NamedQueries({
@@ -24,6 +27,23 @@ public class UsuarioAdministrativo {
 
     @Column(name = "activo", nullable = false)
     private Boolean activo = true;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "usuario_roles",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "rol_id")
+
+    )
+    private Set<Rol> roles;
+
+    public Set<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Rol> roles) {
+        this.roles = roles;
+    }
 
     public Integer getId() {
         return id;
@@ -69,5 +89,9 @@ public class UsuarioAdministrativo {
                 ", apellido='" + apellido + '\'' +
                 ", activo=" + activo +
                 '}';
+    }
+
+    public void setRoles(Rol r) {
+
     }
 }
